@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Voice Prescription</string>
+    
+    <string-array name="spinner_items">
+        <item>"Male"</item>
+        <item>"Female"</item>
+        <item>"Others"</item>
+        <item>"Prefer not to say"</item>
+    </string-array>
+
+</resources>
