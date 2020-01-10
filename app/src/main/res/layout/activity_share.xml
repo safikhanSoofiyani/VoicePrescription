@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ShareActivity">
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="123dp"
+        android:text="Share By ?"
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="112dp"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp"/>
+
+    <Button
+        android:id="@+id/sms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="114dp"
+        android:text="SMS" />
+
+    <Button
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="114dp"
+        android:layout_marginEnd="61dp"
+        android:text="Email" />
+
+    <Button
+        android:id="@+id/dontshare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sms"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="91dp"
+        android:layout_marginEnd="140dp"
+        android:text="Dont Share" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dontshare"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="149dp"
+        android:text="Clicking on Don't Share button will just create a pdf document." />
+</RelativeLayout>

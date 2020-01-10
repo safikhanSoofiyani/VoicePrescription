@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.voiceprescription">
 
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutMe"></activity>
+        <activity android:name=".ShareActivity" />
+        <activity android:name=".NewPrescription3" />
+        <activity android:name=".NewPrescription2" />
+        <activity android:name=".AboutMe" />
         <activity android:name=".PatientHistory" />
         <activity android:name=".PrescriptHistory" />
         <activity android:name=".NewPrescription" />

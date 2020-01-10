@@ -25,6 +25,7 @@ public class NewPrescription extends AppCompatActivity {
     private static final int REQUEST_CODE_SPEAK_NAME = 1;
     private static final int REQUEST_CODE_SPEAK_SYMPTOMS = 2;
     private static final int REQUEST_CODE_SPEAK_DIAGNOSIS = 3;
+    private static final String Tag = "NewPrescription.this";
     TextView prescriptionNo;
     EditText name,age,symptoms,diagnosis;
     ImageButton nameMic,symptomsMic,diagnosisMic;
@@ -81,15 +82,24 @@ public class NewPrescription extends AppCompatActivity {
             public void onClick(View view) {
 
                 //For the time being
+                Log.d(Tag,"Entered In nextbtnOnclick 1");
                 String toast;
                 Sname = name.getText().toString();
+                //Log.d(Tag,"Entered In nextbtnOnclick 2");
                 Ssymptom = symptoms.getText().toString();
                 Sdiagnosis = diagnosis.getText().toString();
                 Sage = age.getText().toString();
-                while(Ssex == "")
-                    Toast.makeText(NewPrescription.this, "Please enter appropriate gender", Toast.LENGTH_SHORT).show();
-                toast = Sname+" : "+Sage+" : "+Ssex+" : "+Ssymptom+" : "+Sdiagnosis;
-                Toast.makeText(NewPrescription.this, ""+toast, Toast.LENGTH_LONG).show();
+                //Log.d(Tag,"Entered In nextbtnOnclick 3");
+                toast = Sname+":"+Sage+":"+Ssex+":"+Ssymptom+":"+Sdiagnosis;
+                //Log.d(Tag,"Entered In nextbtnOnclick 4");
+                //Toast.makeText(NewPrescription.this, ""+toast, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(NewPrescription.this,NewPrescription2.class);
+                //Log.d(Tag,"Entered In nextbtnOnclick 5");
+                intent.putExtra("tempdata",toast);
+                startActivity(intent);
+                //Log.d(Tag,"Entered In nextbtnOnclick 6");
+
+
 
             }
         });

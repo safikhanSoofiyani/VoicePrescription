@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NewPrescription2">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="21dp"
+        android:layout_weight="1"
+        android:text="Prescription : "
+        android:textColor="@android:color/background_dark"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/prescription"
+        android:layout_width="384dp"
+        android:layout_height="148dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="13dp"
+        android:ems="10"
+        android:gravity="top"
+        android:hint="Prescription"
+        android:inputType="textMultiLine" />
+
+    <ImageButton
+        android:id="@+id/prescriptmic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prescription"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="180dp"
+        app:srcCompat="@android:drawable/ic_btn_speak_now" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prescriptmic"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="54dp"
+        android:text="Remarks"
+        android:textColor="@android:color/background_dark"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/remarks"
+        android:layout_width="374dp"
+        android:layout_height="120dp"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="22dp"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <ImageButton
+        android:id="@+id/remarksmic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remarks"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="175dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="180dp"
+        app:srcCompat="@android:drawable/ic_btn_speak_now" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remarksmic"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="259dp"
+        android:text="Next" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remarksmic"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="46dp"
+        android:text="Back" />
+</RelativeLayout>
