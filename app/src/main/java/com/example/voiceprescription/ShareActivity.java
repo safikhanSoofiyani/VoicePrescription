@@ -34,7 +34,7 @@ public class ShareActivity extends AppCompatActivity {
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 10;
     private static final String TAG = "Share Activity";
     private static final int STORAGE_CODE = 1000;
-    Button smsbtn,emailbtn,pdfbtn;
+    Button smsbtn,emailbtn,dontbtn;
     String Sname,Sage,Ssex,Ssymptoms,Sdiagnosis,Sprescription,Sremarks;
     String SmsMessage,PdfMessage;
     String FinalphoneNumber,FinalemailAddress;
@@ -50,7 +50,7 @@ public class ShareActivity extends AppCompatActivity {
 
         smsbtn = findViewById(R.id.sms);
         emailbtn = findViewById(R.id.email);
-        pdfbtn = findViewById(R.id.dontshare);
+        dontbtn = findViewById(R.id.dontshare);
 
         Log.d("NewPrescription2","Starting StringTokenizer");
         StringTokenizer str = new StringTokenizer(message,":");
@@ -111,6 +111,13 @@ public class ShareActivity extends AppCompatActivity {
 
             }
 
+        });
+
+        dontbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
         });
 
 
