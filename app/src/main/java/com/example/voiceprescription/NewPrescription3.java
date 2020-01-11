@@ -48,11 +48,11 @@ public class NewPrescription3 extends AppCompatActivity {
         Log.d("NewPrescription2","End StringTokenizer");
 
 
-        TextDisplayed = "<h2>Dr. Safi Khan's</h2> <br> <br> <br> <b>Prescription No. :</b>   "+"Prescription number"+
-                "<br> <b>Patient Name :</b>   "+Sname+"<br> <b>Age :</b>   "+Sage+"    <b>Sex :</b>"  + Ssex+
-                "<br> <b>Symptoms : </b><br> <p> "+Ssymptoms+"</p><br> <b>Diagnosis :</b><br> <p>"+ Sdiagnosis+
-                "</p><br><b>Prescription :</b><br><p> "+Sprescription +"</p><br><b>Remarks :</b><br> "+Sremarks
-                + "<br><br><br><h5>Dr. Safi Khan</h5>";
+        TextDisplayed = "<h2>Dr. Safi Khan's</h2> <h2> </h2> <b>Prescription No. :</b> "+"<p>Prescription number</p>"+
+                "<b>Patient Name :</b> <p>"+Sname+"</p> <b>Age :</b>   <p>"+Sage+"</p>    <b>Sex :</b><p>"  + Ssex+
+                "</p> <b>Symptoms : </b> <p> "+Ssymptoms+"</p> <b>Diagnosis :</b> <p>"+ Sdiagnosis+
+                "</p> <b>Prescription :</b> <p> "+Sprescription +"</p><b>Remarks :</b><p>"+Sremarks
+                + "</p><h2></h2><h5>Dr. Safi Khan</h5>";
         document.setText(Html.fromHtml(TextDisplayed));
 
 

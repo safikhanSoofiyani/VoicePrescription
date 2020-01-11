@@ -3,121 +3,107 @@ package com.example.voiceprescription;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.support.v4.app.LoaderManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telephony.SmsManager;
-import android.telephony.SmsMessage;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
+
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.StringReader;
-import java.nio.channels.InterruptedByTimeoutException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-import java.util.StringTokenizer;
 
-public class ShareActivity extends AppCompatActivity {
-
-    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 10;
-    private static final String TAG = "Share Activity";
-    private static final int STORAGE_CODE = 1000;
-    Button smsbtn,emailbtn,pdfbtn;
-    String Sname,Sage,Ssex,Ssymptoms,Sdiagnosis,Sprescription,Sremarks;
-    String SmsMessage,PdfMessage;
-    String FinalphoneNumber,FinalemailAddress;
+public class emailSender extends AppCompatActivity {
+    String EmailAddress,Message;
+    EditText emailT;
+    Button sendbtn;
     String filename;
+    String Sname;
+    String date,Subject,Body;
+    private static final int STORAGE_CODE = 1000;
+    public static final String TAG = "EmailSender";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share);
+        setContentView(R.layout.activity_email_sender);
 
-        final Intent intent = getIntent();
-        String message = intent.getStringExtra("finalmessage");
+        Intent intent = getIntent();
+        filename = intent.getStringExtra("message");
+        Sname = intent.getStringExtra("name");
 
-        smsbtn = findViewById(R.id.sms);
-        emailbtn = findViewById(R.id.email);
-        pdfbtn = findViewById(R.id.dontshare);
+        emailT = findViewById(R.id.email);
+        sendbtn = findViewById(R.id.send);
 
-        Log.d("NewPrescription2","Starting StringTokenizer");
-        StringTokenizer str = new StringTokenizer(message,":");
-        Sname = str.nextToken();
-        Sage = str.nextToken();
-        Ssex = str.nextToken();
-        Ssymptoms = str.nextToken();
-        Sdiagnosis = str.nextToken();
-        Sprescription = str.nextToken();
-        Sremarks = str.nextToken();
-        Log.d("NewPrescription2","End StringTokenizer");
-
-
-        //making the message for sms
-        SmsMessage = "Dr. Safi Khan"+"\n\n"+"Name:   "+Sname+"\nAge:  "+Sage+"\nSex:  "+Ssex+"\nSymptoms:  "+Ssymptoms
-                +"\n\nDiagnosis:  "+Sdiagnosis+"\n\nRemarks:  "+Sremarks+"\n\n\nDr. Safi Khan";
-
-        //making the message for pdf
-        PdfMessage = "<h1>Dr. Safi Khan's</h1> <h2> </h2> <b>Prescription No. :</b> "+"<p>Prescription number</p>"+
-                "<b>Patient Name :</b> <p>"+Sname+"</p> <b>Age :</b>   <p>"+Sage+"</p>    <b>Sex :</b><p>"  + Ssex+
-                "</p> <b>Symptoms : </b> <p> "+Ssymptoms+"</p> <b>Diagnosis :</b> <p>"+ Sdiagnosis+
-                "</p> <b>Prescription :</b> <p> "+Sprescription +"</p><b>Remarks :</b><p>"+Sremarks
-                + "</p><h2></h2><h5>Dr. Safi Khan</h5>";
-
-
-
-        String date = new SimpleDateFormat("dd-MM-yyyy--HH:mm",
+        date = new SimpleDateFormat("dd-MM-yyyy",
                 Locale.getDefault()).format(System.currentTimeMillis());
-        filename = Sname + date+".pdf";
-        checkpdfpermission();
+        Subject = "Prescription dated :"+date;
+        Body = "Respected Sir/Madam\nPlease find the prescription attached.\nYour visit was on date: "+date+"."
+            +"\n\nThank You";
 
 
-        //setting the button onClickListeners
 
-        smsbtn.setOnClickListener(new View.OnClickListener() {
+        sendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //sending sms
-                //for taking phone number creating a dialog box
-                //Toast.makeText(ShareActivity.this, ""+ SmsMessage, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ShareActivity.this,SmsSender.class);
-                intent.putExtra("message",SmsMessage);
+                //first creating a pdf document.
+                Log.d(TAG,"Button clicked");
+
+                //creating the pdf file here
+                //filename = Sname + date+".pdf";
+
+
+                //Log.d(TAG,"Made the filename");
+                //checkpdfpermission();
+                //Log.d(TAG,"Came back from checkpdfpermission");
+                File filelocation = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),filename);
+                Log.d(TAG,"Made the file object");
+                Uri path = Uri.fromFile(filelocation);
+                Log.d(TAG,"Made the Uri object");
+                String[] email = new String[1];
+                EmailAddress = emailT.getText().toString();
+                email[0] = EmailAddress;
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                Log.d(TAG,"Made the intent");
+                intent.setData(Uri.parse("mailto:"));
+                Log.d(TAG,"Made the intent 2");
+                intent.putExtra(Intent.EXTRA_EMAIL,email);
+                Log.d(TAG,"Made the intent 3");
+                intent.putExtra(Intent.EXTRA_STREAM,path);
+                Log.d(TAG,"Made the intent 4");
+                intent.putExtra(Intent.EXTRA_SUBJECT,Subject);
+                Log.d(TAG,"Made the intent 5");
+                intent.putExtra(Intent.EXTRA_TEXT,Body);
+                Log.d(TAG,"Made the intent 6");
                 startActivity(intent);
-                //sendSMS();
+                Toast.makeText(emailSender.this, "Redirecting", Toast.LENGTH_SHORT).show();
+                finish();
+
 
 
             }
         });
-
-        emailbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent1 = new Intent(ShareActivity.this,emailSender.class);
-                intent1.putExtra("message",filename);
-                intent1.putExtra("name",Sname);
-                startActivity(intent1);
-
-            }
-
-        });
-
-
     }
 
-
-    public void checkpdfpermission()
+    /*public void checkpdfpermission()
     {
         Log.d(TAG,"Entered checkpdfpermisssion");
         if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M){
@@ -171,7 +157,7 @@ public class ShareActivity extends AppCompatActivity {
             mDoc.addAuthor("Safi Khan");//actually doctors name
             XMLWorkerHelper worker = XMLWorkerHelper.getInstance();
             Log.d(TAG,"Got the object of XMLWORkER");
-            worker.parseXHtml(pdfWriter,mDoc, new StringReader(PdfMessage));
+            worker.parseXHtml(pdfWriter,mDoc, new StringReader(Message));
             Log.d(TAG,"successfully wrote in the pdf");
 
             mDoc.close();
@@ -183,7 +169,7 @@ public class ShareActivity extends AppCompatActivity {
 
         }catch(Exception e)
         {
-            Toast.makeText(ShareActivity.this,""+e.getMessage(),Toast.LENGTH_LONG).show();
+            Toast.makeText(emailSender.this,""+e.getMessage(),Toast.LENGTH_LONG).show();
         }
 
     }
@@ -205,17 +191,13 @@ public class ShareActivity extends AppCompatActivity {
                 else{
                     //permission was denied from popup
                     //show error message
-                    Toast.makeText(ShareActivity.this,"Permission was denied",Toast.LENGTH_LONG).show();
+                    Toast.makeText(emailSender.this,"Permission was denied",Toast.LENGTH_LONG).show();
 
 
                 }
             }
         }
-    }
-
-
-
-
+    }*/
 
 
 }
