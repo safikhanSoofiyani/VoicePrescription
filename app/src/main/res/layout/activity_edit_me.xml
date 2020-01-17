@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutMe"
-    android:padding="16dp">
+    tools:context=".EditMe"
+    >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
@@ -15,7 +20,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="38dp"
         android:layout_marginTop="62dp"
-        android:text="About Me"
+        android:text="Edit Your Info"
         android:textColor="@android:color/background_dark"
         android:textSize="20sp"
         tools:layout_editor_absoluteX="29dp"
@@ -33,18 +38,18 @@
         android:textSize="16sp"
         android:textColor="@android:color/background_dark"/>
 
-    <TextView
+    <EditText
         android:id="@+id/namedoc"
         android:layout_width="273dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView14"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="41dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:layout_toEndOf="@+id/textView15"
+        android:gravity="center"
         android:text=""
-        android:textSize="16sp"
         android:textColor="@android:color/background_dark"
-        android:gravity="center"/>
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textView17"
@@ -53,23 +58,23 @@
         android:layout_below="@+id/textView15"
         android:layout_alignParentStart="true"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="41dp"
         android:text="Speciality :"
         android:textColor="@android:color/background_dark"
         android:textSize="16sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/speciality"
         android:layout_width="266dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/namedoc"
         android:layout_marginStart="17dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="19dp"
         android:layout_toEndOf="@+id/textView17"
+        android:gravity="center"
         android:text=""
         android:textColor="@android:color/background_dark"
-        android:textSize="16sp"
-        android:gravity="center"/>
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/textView19"
@@ -78,12 +83,12 @@
         android:layout_below="@+id/textView17"
         android:layout_alignParentStart="true"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="51dp"
         android:text="Name of Clinic :"
         android:textColor="@android:color/background_dark"
         android:textSize="16sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/clinicname"
         android:layout_width="238dp"
         android:layout_height="wrap_content"
@@ -103,12 +108,12 @@
         android:layout_below="@+id/textView19"
         android:layout_alignParentStart="true"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="51dp"
         android:text="Address :"
         android:textColor="@android:color/background_dark"
         android:textSize="16sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/address"
         android:layout_width="267dp"
         android:layout_height="113dp"
@@ -127,12 +132,12 @@
         android:layout_below="@+id/address"
         android:layout_alignParentStart="true"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="41dp"
         android:text="Mobile"
         android:textColor="@android:color/background_dark"
         android:textSize="16sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/mobile"
         android:layout_width="222dp"
         android:layout_height="wrap_content"
@@ -141,6 +146,7 @@
         android:layout_marginTop="31dp"
         android:layout_toEndOf="@+id/textView23"
         android:text=""
+        android:inputType="phone"
         android:textColor="@android:color/background_dark"
         android:textSize="16sp" />
 
@@ -151,12 +157,12 @@
         android:layout_below="@+id/textView23"
         android:layout_alignParentStart="true"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="51dp"
         android:text="Email address"
         android:textColor="@android:color/background_dark"
         android:textSize="16sp" />
 
-    <TextView
+    <EditText
         android:id="@+id/emailaddress"
         android:layout_width="238dp"
         android:layout_height="wrap_content"
@@ -165,17 +171,20 @@
         android:layout_marginTop="31dp"
         android:layout_toEndOf="@+id/textView25"
         android:text=""
+        android:inputType="textEmailAddress"
         android:textColor="@android:color/background_dark"
         android:textSize="16sp" />
 
-    <ImageButton
-        android:id="@+id/edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="56dp"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
-
-</RelativeLayout>
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/emailaddress"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="145dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="145dp"
+            android:text="Save" />
+    </RelativeLayout>
+</ScrollView>

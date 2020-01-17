@@ -1,6 +1,7 @@
 package com.example.voiceprescription;
 
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -10,10 +11,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.StringTokenizer;
 
 public class NewPrescription3 extends AppCompatActivity {
 
+    private static final String TAG = "NewPrescription3";
     TextView document;
     Button backbtn,confirmbtn;
     String Sname,Sage,Ssex,Ssymptoms,Sdiagnosis,Sprescription,Sremarks;
@@ -54,6 +57,33 @@ public class NewPrescription3 extends AppCompatActivity {
                 "</p> <b>Prescription :</b> <p> "+Sprescription +"</p><b>Remarks :</b><p>"+Sremarks
                 + "</p><h2></h2><h5>Dr. Safi Khan</h5>";
         document.setText(Html.fromHtml(TextDisplayed));
+
+
+        //checking whether directory is present or not
+        File dir = new File(Environment.getExternalStorageDirectory()+"/Prescriptions");
+        if(dir.exists() && dir.isDirectory())
+        {
+            //directory already exists
+            //dont do anyhting
+        }
+        else
+        {
+            //creating a new directory because the original directory is not present
+            try{
+                if(dir.mkdir()){
+                    Log.d(TAG,"Directory created");
+                }
+                else{
+                    Log.d(TAG,"Directory not created");
+                }
+            }catch (Exception e)
+            {
+                Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
+
 
 
 

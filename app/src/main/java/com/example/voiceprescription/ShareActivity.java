@@ -3,6 +3,7 @@ package com.example.voiceprescription;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -81,6 +82,11 @@ public class ShareActivity extends AppCompatActivity {
                 Locale.getDefault()).format(System.currentTimeMillis());
         filename = Sname + date+".pdf";
         checkpdfpermission();
+
+        //inserting the pdf path in the database
+        MyHelper helper = new MyHelper(this);
+        SQLiteDatabase database = helper.getWritableDatabase();
+        helper.insertPrescript(Sname,filename,database);
 
 
         //setting the button onClickListeners
@@ -163,7 +169,7 @@ public class ShareActivity extends AppCompatActivity {
         Document mDoc = new Document();
 
         //pdf file path
-        String mFilePath = Environment.getExternalStorageDirectory() + "/" + filename;
+        String mFilePath = Environment.getExternalStorageDirectory() + "/Prescriptions/" + filename;
         Log.d(TAG,"Got the filepath");
 
         try{

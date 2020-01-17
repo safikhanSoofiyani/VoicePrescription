@@ -74,7 +74,8 @@ public class emailSender extends AppCompatActivity {
                 //Log.d(TAG,"Made the filename");
                 //checkpdfpermission();
                 //Log.d(TAG,"Came back from checkpdfpermission");
-                File filelocation = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),filename);
+                String spath = Environment.getExternalStorageDirectory().getPath()+"/Prescriptions/";
+                File filelocation = new File(spath,filename);
                 Log.d(TAG,"Made the file object");
                 Uri path = Uri.fromFile(filelocation);
                 Log.d(TAG,"Made the Uri object");
