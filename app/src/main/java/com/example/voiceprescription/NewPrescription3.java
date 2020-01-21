@@ -11,7 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class NewPrescription3 extends AppCompatActivity {
@@ -20,7 +23,7 @@ public class NewPrescription3 extends AppCompatActivity {
     TextView document;
     Button backbtn,confirmbtn;
     String Sname,Sage,Ssex,Ssymptoms,Sdiagnosis,Sprescription,Sremarks;
-    String TextDisplayed;
+    String TextDisplayed,Name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,21 @@ public class NewPrescription3 extends AppCompatActivity {
         backbtn = findViewById(R.id.back);
         confirmbtn = findViewById(R.id.confirm);
 
+        BufferedReader input = null;
+        File file = null;
+        try{
+            file = new File(getFilesDir(),"AboutMe.txt");
+            input = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            String line;
+            line = input.readLine();
+            StringTokenizer str = new StringTokenizer(line,":");
+            Name = str.nextToken();
+
+        }catch(Exception e)
+        {
+            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
 
         //printing the document
         Log.d("NewPrescription2","Starting StringTokenizer");
@@ -51,11 +69,11 @@ public class NewPrescription3 extends AppCompatActivity {
         Log.d("NewPrescription2","End StringTokenizer");
 
 
-        TextDisplayed = "<h2>Dr. Safi Khan's</h2> <h2> </h2> <b>Prescription No. :</b> "+"<p>Prescription number</p>"+
+        TextDisplayed = "<h2>"+Name+"</h2> <h2> </h2> <b>Prescription No. :</b> "+"<p>Prescription number</p>"+
                 "<b>Patient Name :</b> <p>"+Sname+"</p> <b>Age :</b>   <p>"+Sage+"</p>    <b>Sex :</b><p>"  + Ssex+
                 "</p> <b>Symptoms : </b> <p> "+Ssymptoms+"</p> <b>Diagnosis :</b> <p>"+ Sdiagnosis+
                 "</p> <b>Prescription :</b> <p> "+Sprescription +"</p><b>Remarks :</b><p>"+Sremarks
-                + "</p><h2></h2><h5>Dr. Safi Khan</h5>";
+                + "</p><h2></h2><h5>"+Name+"</h5>";
         document.setText(Html.fromHtml(TextDisplayed));
 
 

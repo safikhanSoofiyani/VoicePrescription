@@ -23,7 +23,11 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.tool.xml.XMLWorkerHelper;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.nio.channels.InterruptedByTimeoutException;
 import java.text.SimpleDateFormat;
@@ -40,6 +44,7 @@ public class ShareActivity extends AppCompatActivity {
     String SmsMessage,PdfMessage;
     String FinalphoneNumber,FinalemailAddress;
     String filename;
+    String Name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,19 @@ public class ShareActivity extends AppCompatActivity {
         smsbtn = findViewById(R.id.sms);
         emailbtn = findViewById(R.id.email);
         dontbtn = findViewById(R.id.dontshare);
+
+        //getting the doctors name
+        try {
+            File file = new File(getFilesDir(), "AboutMe.txt");
+            BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            String line;
+            line = input.readLine();
+            StringTokenizer str1 = new StringTokenizer(line, ":");
+            Name = str1.nextToken();
+        }catch(Exception e)
+        {
+            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
+        }
 
         Log.d("NewPrescription2","Starting StringTokenizer");
         StringTokenizer str = new StringTokenizer(message,":");
@@ -66,15 +84,23 @@ public class ShareActivity extends AppCompatActivity {
 
 
         //making the message for sms
-        SmsMessage = "Dr. Safi Khan"+"\n\n"+"Name:   "+Sname+"\nAge:  "+Sage+"\nSex:  "+Ssex+"\nSymptoms:  "+Ssymptoms
-                +"\n\nDiagnosis:  "+Sdiagnosis+"\n\nRemarks:  "+Sremarks+"\n\n\nDr. Safi Khan";
+        /*SmsMessage = "Dr. Safi Khan"+"\n\n"+"Name:   "+Sname+"\nAge:  "+Sage+"\nSex:  "+Ssex+"\nSymptoms:  "+Ssymptoms
+                +"\n\nDiagnosis:  "+Sdiagnosis+"\n\nRemarks:  "+Sremarks+"\n\n\nDr. Safi Khan";*/
+        SmsMessage = Name+"\n\n"+"Name:   "+Sname+"\nAge:  "+Sage+"\nSex:  "+Ssex+"\nSymptoms:  "+Ssymptoms
+                +"\n\nDiagnosis:  "+Sdiagnosis+"\n\nRemarks:  "+Sremarks+"\n\n\n"+Name;
 
         //making the message for pdf
-        PdfMessage = "<h1>Dr. Safi Khan's</h1> <h2> </h2> <b>Prescription No. :</b> "+"<p>Prescription number</p>"+
+        /*PdfMessage = "<h1>Dr. Safi Khan's</h1> <h2> </h2> <b>Prescription No. :</b> "+"<p>Prescription number</p>"+
                 "<b>Patient Name :</b> <p>"+Sname+"</p> <b>Age :</b>   <p>"+Sage+"</p>    <b>Sex :</b><p>"  + Ssex+
                 "</p> <b>Symptoms : </b> <p> "+Ssymptoms+"</p> <b>Diagnosis :</b> <p>"+ Sdiagnosis+
                 "</p> <b>Prescription :</b> <p> "+Sprescription +"</p><b>Remarks :</b><p>"+Sremarks
-                + "</p><h2></h2><h5>Dr. Safi Khan</h5>";
+                + "</p><h2></h2><h5>Dr. Safi Khan</h5>";*/
+        PdfMessage = "<h1>"+Name+"</h1> <h2> </h2> <b>Prescription No. :</b> "+"<p>Prescription number</p>"+
+                "<b>Patient Name :</b> <p>"+Sname+"</p> <b>Age :</b>   <p>"+Sage+"</p>    <b>Sex :</b><p>"  + Ssex+
+                "</p> <b>Symptoms : </b> <p> "+Ssymptoms+"</p> <b>Diagnosis :</b> <p>"+ Sdiagnosis+
+                "</p> <b>Prescription :</b> <p> "+Sprescription +"</p><b>Remarks :</b><p>"+Sremarks
+                + "</p><h2></h2><h5>"+Name+"</h5>";
+
 
 
 
@@ -181,7 +207,10 @@ public class ShareActivity extends AppCompatActivity {
             mDoc.open();
             Log.d(TAG,"opened the document");
             //writing text from edit Text
-            mDoc.addAuthor("Safi Khan");//actually doctors name
+
+
+
+            mDoc.addAuthor(Name);//actually doctors name
             XMLWorkerHelper worker = XMLWorkerHelper.getInstance();
             Log.d(TAG,"Got the object of XMLWORkER");
             worker.parseXHtml(pdfWriter,mDoc, new StringReader(PdfMessage));

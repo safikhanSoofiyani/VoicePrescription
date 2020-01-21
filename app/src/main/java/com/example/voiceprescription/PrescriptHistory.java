@@ -5,11 +5,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -34,6 +36,11 @@ public class PrescriptHistory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prescript_history);
+
+        //to resolve the errors getting while opening the fil via URI.
+        //It enables the VM to ignore the file URI exposure
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
 
         searchView = findViewById(R.id.searchview);
         listView = findViewById(R.id.listview);
@@ -81,6 +88,7 @@ public class PrescriptHistory extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     String filename = searchView.getQuery().toString();
+                   // Toast.makeText(PrescriptHistory.this, ""+filename, Toast.LENGTH_LONG).show();
                     //String path = Environment.getExternalStorageDirectory()+"/Prescriptions/";
                     File file = new File(Environment.getExternalStorageDirectory() + "/Prescriptions/" + filename);
                     Uri path = Uri.fromFile(file);
@@ -97,6 +105,15 @@ public class PrescriptHistory extends AppCompatActivity {
                     Toast.makeText(PrescriptHistory.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String selected_item = listView.getItemAtPosition(i).toString();
+                //Toast.makeText(PrescriptHistory.this, ""+selected_item, Toast.LENGTH_LONG).show();
+                searchView.setQuery(selected_item,false);
             }
         });
 
