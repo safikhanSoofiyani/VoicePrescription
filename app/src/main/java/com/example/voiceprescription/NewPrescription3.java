@@ -22,7 +22,7 @@ public class NewPrescription3 extends AppCompatActivity {
     private static final String TAG = "NewPrescription3";
     TextView document;
     Button backbtn,confirmbtn;
-    String Sname,Sage,Ssex,Ssymptoms,Sdiagnosis,Sprescription,Sremarks;
+    String Sname,Sage,Ssex,Ssymptoms,Sdiagnosis,Sprescription,Sremarks,Sprescriptno;
     String TextDisplayed,Name;
 
     @Override
@@ -60,6 +60,7 @@ public class NewPrescription3 extends AppCompatActivity {
         Log.d("NewPrescription3","Starting StringTokenizer");
         try {
             StringTokenizer str = new StringTokenizer(message, ":");
+            Sprescriptno = str.nextToken();
             Sname = str.nextToken();
             Sage = str.nextToken();
             Ssex = str.nextToken();
@@ -75,7 +76,7 @@ public class NewPrescription3 extends AppCompatActivity {
         }
 
 
-        TextDisplayed = "<h2>"+Name+"</h2> <h2> </h2> <b>Prescription No. :</b> "+"<p>Prescription number</p>"+
+        TextDisplayed = "<h2>"+Name+"</h2> <h2> </h2> <b>Prescription No. :</b> "+"<p>"+Sprescriptno+"</p>"+
                 "<b>Patient Name :</b> <p>"+Sname+"</p> <b>Age :</b>   <p>"+Sage+"</p>    <b>Sex :</b><p>"  + Ssex+
                 "</p> <b>Symptoms : </b> <p> "+Ssymptoms+"</p> <b>Diagnosis :</b> <p>"+ Sdiagnosis+
                 "</p> <b>Prescription :</b> <p> "+Sprescription +"</p><b>Remarks :</b><p>"+Sremarks
@@ -126,7 +127,7 @@ public class NewPrescription3 extends AppCompatActivity {
             public void onClick(View view) {
 
                 String final_message;
-                final_message = Sname+":"+Sage+":"+Ssex+":"+Ssymptoms+":"+Sdiagnosis+":"+Sprescription+":"+Sremarks;
+                final_message = Sprescriptno+":"+Sname+":"+Sage+":"+Ssex+":"+Ssymptoms+":"+Sdiagnosis+":"+Sprescription+":"+Sremarks;
                 Intent intent1 = new Intent(NewPrescription3.this,ShareActivity.class);
                 intent1.putExtra("finalmessage",final_message);
                 startActivity(intent1);

@@ -69,6 +69,26 @@ public class EditMe extends AppCompatActivity {
                 Smobile = Mobile.getText().toString();
                 Semail = Email.getText().toString();
                 String Sfinal = SnameDoc+":"+Sspeciality+":"+SnameClinic+":"+Saddress+":"+Smobile+":"+Semail;
+
+                /*String temp;
+                StringTokenizer str2 = new StringTokenizer(Sfinal,":");
+                try{
+                    //checking whether all the fields are filled or not
+                    temp = str2.nextToken();
+                    temp = str2.nextToken();
+                    temp = str2.nextToken();
+                    temp = str2.nextToken();
+                    temp = str2.nextToken();
+                    temp = str2.nextToken();
+                }catch(Exception e)
+                {
+                    Toast.makeText(EditMe.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+                    Intent intent1 = new Intent(getApplicationContext(),EditMe.class);
+                    intent1.putExtra("message",strtemp);
+                    startActivity(intent1);
+                }*/
+
+
                 FileOutputStream out = null;
                 try{
                     out = openFileOutput(filename, Context.MODE_PRIVATE);
@@ -85,6 +105,8 @@ public class EditMe extends AppCompatActivity {
 
                 Toast.makeText(EditMe.this, "Saved Successfully", Toast.LENGTH_SHORT).show();
                 finish();
+
+
 
             }
         });

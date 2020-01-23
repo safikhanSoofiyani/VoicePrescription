@@ -1,6 +1,9 @@
 package com.example.voiceprescription;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
 import android.speech.RecognizerIntent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -32,7 +35,7 @@ public class NewPrescription extends AppCompatActivity {
     Button nextbtn;
     Spinner sexList;
 
-    String Ssex, Sname, Ssymptom,Sdiagnosis,Sage;
+    String Ssex, Sname, Ssymptom,Sdiagnosis,Sage,Sprescriptno;
 
 
     @Override
@@ -51,6 +54,27 @@ public class NewPrescription extends AppCompatActivity {
         diagnosisMic = findViewById(R.id.mic_diagnosis);
         nextbtn = findViewById(R.id.next);
         sexList = findViewById(R.id.sex);
+
+
+        String count = "";
+        //getting the prescription number
+        MyHelper helper = new MyHelper(this);
+        SQLiteDatabase database = helper.getReadableDatabase();
+        try{
+            long Count = DatabaseUtils.queryNumEntries(database,"PRESCRIPTION");
+            database.close();
+            Count = Count+1;
+            count = Long.toString(Count);
+        }catch(Exception e)
+        {
+            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+
+        Sprescriptno = count;
+        prescriptionNo.setText(count);
+
+
 
         //attaching onclick listeners to each
         nameMic.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +116,7 @@ public class NewPrescription extends AppCompatActivity {
                 Sdiagnosis = diagnosis.getText().toString();
                 Sage = age.getText().toString();
                 //Log.d(Tag,"Entered In nextbtnOnclick 3");
-                toast = Sname+":"+Sage+":"+Ssex+":"+Ssymptom+":"+Sdiagnosis;
+                toast = Sprescriptno+":"+Sname+":"+Sage+":"+Ssex+":"+Ssymptom+":"+Sdiagnosis;
                 //Log.d(Tag,"Entered In nextbtnOnclick 4");
                 //Toast.makeText(NewPrescription.this, ""+toast, Toast.LENGTH_LONG).show();
                 //if(Sname.equals("/:") || Sage.equals("/:") || Ssymptom.equals("/:") || Sdiagnosis.equals("/:") || Ssex.equals("/:")) {

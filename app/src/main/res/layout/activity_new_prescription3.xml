@@ -57,9 +57,9 @@
         android:layout_below="@+id/textView10"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="162dp"
+        android:layout_marginStart="145dp"
         android:layout_marginTop="525dp"
-        android:layout_marginEnd="161dp"
+        android:layout_marginEnd="145dp"
         android:text="Confirm" />
 
 </RelativeLayout>

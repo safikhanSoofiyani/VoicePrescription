@@ -24,7 +24,7 @@ public class NewPrescription2 extends AppCompatActivity {
     EditText prescription,remarks;
     ImageButton micPrescription,micRemarks;
     Button nextbtn,backbtn;
-    String Sname,Sage,Ssex,Ssymptoms,Sdiagnosis,Sprescription,Sremarks;
+    String Sname,Sage,Ssex,Ssymptoms,Sdiagnosis,Sprescription,Sremarks,Sprescriptno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class NewPrescription2 extends AppCompatActivity {
         Log.d("NewPrescription2","Starting StringTokenizer");
         try {
             StringTokenizer str = new StringTokenizer(message, ":");
+            Sprescriptno = str.nextToken();
             Sname = str.nextToken();
             Sage = str.nextToken();
             Ssex = str.nextToken();
@@ -78,7 +79,7 @@ public class NewPrescription2 extends AppCompatActivity {
             public void onClick(View view) {
                 Sprescription = prescription.getText().toString();
                 Sremarks = remarks.getText().toString();
-                String message2 = Sname+":"+Sage+":"+Ssex+":"+Ssymptoms+":"+Sdiagnosis+":"+Sprescription+":"+Sremarks;
+                String message2 = Sprescriptno+":"+Sname+":"+Sage+":"+Ssex+":"+Ssymptoms+":"+Sdiagnosis+":"+Sprescription+":"+Sremarks;
                 Intent intent = new Intent(NewPrescription2.this,NewPrescription3.class);
                 intent.putExtra("tempdata2",message2);
                 startActivity(intent);

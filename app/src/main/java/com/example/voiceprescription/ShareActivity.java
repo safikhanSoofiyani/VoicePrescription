@@ -40,7 +40,7 @@ public class ShareActivity extends AppCompatActivity {
     private static final String TAG = "Share Activity";
     private static final int STORAGE_CODE = 1000;
     Button smsbtn,emailbtn,dontbtn;
-    String Sname,Sage,Ssex,Ssymptoms,Sdiagnosis,Sprescription,Sremarks;
+    String Sname,Sage,Ssex,Ssymptoms,Sdiagnosis,Sprescription,Sremarks,Sprescriptno;
     String SmsMessage,PdfMessage;
     String FinalphoneNumber,FinalemailAddress;
     String filename;
@@ -73,6 +73,7 @@ public class ShareActivity extends AppCompatActivity {
 
         Log.d("NewPrescription2","Starting StringTokenizer");
         StringTokenizer str = new StringTokenizer(message,":");
+        Sprescriptno = str.nextToken();
         Sname = str.nextToken();
         Sage = str.nextToken();
         Ssex = str.nextToken();
@@ -95,7 +96,7 @@ public class ShareActivity extends AppCompatActivity {
                 "</p> <b>Symptoms : </b> <p> "+Ssymptoms+"</p> <b>Diagnosis :</b> <p>"+ Sdiagnosis+
                 "</p> <b>Prescription :</b> <p> "+Sprescription +"</p><b>Remarks :</b><p>"+Sremarks
                 + "</p><h2></h2><h5>Dr. Safi Khan</h5>";*/
-        PdfMessage = "<h1>"+Name+"</h1> <h2> </h2> <b>Prescription No. :</b> "+"<p>Prescription number</p>"+
+        PdfMessage = "<h1>"+Name+"</h1> <h2> </h2> <b>Prescription No. :</b> "+"<p>"+Sprescriptno+"</p>"+
                 "<b>Patient Name :</b> <p>"+Sname+"</p> <b>Age :</b>   <p>"+Sage+"</p>    <b>Sex :</b><p>"  + Ssex+
                 "</p> <b>Symptoms : </b> <p> "+Ssymptoms+"</p> <b>Diagnosis :</b> <p>"+ Sdiagnosis+
                 "</p> <b>Prescription :</b> <p> "+Sprescription +"</p><b>Remarks :</b><p>"+Sremarks
@@ -156,6 +157,10 @@ public class ShareActivity extends AppCompatActivity {
         dontbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(ShareActivity.this, "Done!!", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(getApplicationContext(),MainPage.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent1);
 
             }
         });

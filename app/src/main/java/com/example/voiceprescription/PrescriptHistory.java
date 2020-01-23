@@ -90,18 +90,24 @@ public class PrescriptHistory extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     String filename = searchView.getQuery().toString();
-                    Toast.makeText(PrescriptHistory.this, ""+filename, Toast.LENGTH_LONG).show();
-                    //String path = Environment.getExternalStorageDirectory()+"/Prescriptions/";
-                    File file = new File(Environment.getExternalStorageDirectory() + "/Prescriptions/" + filename);
-                    Uri path = Uri.fromFile(file);
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    Log.d("Prescript History", "Created intent");
-                    intent.setDataAndType(path, "application/pdf");
-                    Log.d("Prescript History", "Created intent 2");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    Log.d("Prescript History", "Created intent 3");
-                    startActivity(intent);
-                    Log.d("Prescript History", "Returned from pdf");
+                    if(filename.isEmpty()){
+                        Toast.makeText(PrescriptHistory.this, "Please select a proper file", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Toast.makeText(PrescriptHistory.this, "" + filename, Toast.LENGTH_LONG).show();
+                        //String path = Environment.getExternalStorageDirectory()+"/Prescriptions/";
+                        File file = new File(Environment.getExternalStorageDirectory() + "/Prescriptions/" + filename);
+                        Uri path = Uri.fromFile(file);
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        Log.d("Prescript History", "Created intent");
+                        intent.setDataAndType(path, "application/pdf");
+                        Log.d("Prescript History", "Created intent 2");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Log.d("Prescript History", "Created intent 3");
+                        startActivity(intent);
+                        Log.d("Prescript History", "Returned from pdf");
+                    }
+
                 }catch (Exception e)
                 {
                     Toast.makeText(PrescriptHistory.this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
