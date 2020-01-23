@@ -51,36 +51,38 @@ public class PrescriptHistory extends AppCompatActivity {
 
         MyHelper helper = new MyHelper(this);
         SQLiteDatabase database = helper.getReadableDatabase();
-        Cursor cursor = database.rawQuery("SELECT FILENAME FROM PRESCRIPTION",new String[]{});
-        if(cursor != null)
+        try {
+            Cursor cursor = database.rawQuery("SELECT FILENAME FROM PRESCRIPTION", new String[]{});
+            if (cursor != null) {
+                cursor.moveToFirst();
+                do {
+                    String temp = cursor.getString(0);
+                    myList.add(temp);
+                } while (cursor.moveToNext());
+
+                adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, myList);
+                listView.setAdapter(adapter);
+
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String s) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String s) {
+                        adapter.getFilter().filter(s);
+                        return false;
+                    }
+                });
+
+
+            } else {
+                Toast.makeText(this, "Nothing to display", Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e)
         {
-            cursor.moveToFirst();
-            do{
-                String temp = cursor.getString(0);
-                myList.add(temp);
-            }while(cursor.moveToNext());
-
-            adapter = new ArrayAdapter<>(this , android.R.layout.simple_list_item_1,myList);
-            listView.setAdapter(adapter);
-
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String s) {
-                    adapter.getFilter().filter(s);
-                    return false;
-                }
-            });
-
-
-        }
-        else
-        {
-            Toast.makeText(this, "Nothing to display", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
         fetchbtn.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +90,7 @@ public class PrescriptHistory extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     String filename = searchView.getQuery().toString();
-                   // Toast.makeText(PrescriptHistory.this, ""+filename, Toast.LENGTH_LONG).show();
+                    Toast.makeText(PrescriptHistory.this, ""+filename, Toast.LENGTH_LONG).show();
                     //String path = Environment.getExternalStorageDirectory()+"/Prescriptions/";
                     File file = new File(Environment.getExternalStorageDirectory() + "/Prescriptions/" + filename);
                     Uri path = Uri.fromFile(file);

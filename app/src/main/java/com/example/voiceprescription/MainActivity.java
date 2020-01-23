@@ -2,6 +2,7 @@ package com.example.voiceprescription;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -50,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+
+        MyHelper helper = new MyHelper(this);
+        File dir = new File(Environment.getExternalStorageDirectory()+"/Prescriptions");
 
 
 

@@ -57,7 +57,7 @@ public class NewPrescription3 extends AppCompatActivity {
 
 
         //printing the document
-        Log.d("NewPrescription2","Starting StringTokenizer");
+        Log.d("NewPrescription3","Starting StringTokenizer");
         StringTokenizer str = new StringTokenizer(message,":");
         Sname = str.nextToken();
         Sage = str.nextToken();
@@ -66,7 +66,7 @@ public class NewPrescription3 extends AppCompatActivity {
         Sdiagnosis = str.nextToken();
         Sprescription = str.nextToken();
         Sremarks = str.nextToken();
-        Log.d("NewPrescription2","End StringTokenizer");
+        Log.d("NewPrescription3","End StringTokenizer");
 
 
         TextDisplayed = "<h2>"+Name+"</h2> <h2> </h2> <b>Prescription No. :</b> "+"<p>Prescription number</p>"+
@@ -83,10 +83,12 @@ public class NewPrescription3 extends AppCompatActivity {
         {
             //directory already exists
             //dont do anyhting
+            Log.d("NewPrescription3","directory exists");
         }
         else
         {
             //creating a new directory because the original directory is not present
+            Log.d("NewPrescription3","directory doesnt exists");
             try{
                 if(dir.mkdir()){
                     Log.d(TAG,"Directory created");

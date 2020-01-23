@@ -21,6 +21,10 @@ public class MyHelper  extends SQLiteOpenHelper {
                 "PATIENTNAME TEXT, FILENAME TEXT)";
         sqLiteDatabase.execSQL(SQL);
 
+        String SQL2 = "CREATE TABLE PATIENT (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "PATIENTNAME TEXT, PDATE TEXT, PTIME TEXT)";
+        sqLiteDatabase.execSQL(SQL2);
+
     }
 
     public void insertPrescript(String Pname,String Fname,SQLiteDatabase db)
@@ -29,6 +33,16 @@ public class MyHelper  extends SQLiteOpenHelper {
         contentValues.put("PATIENTNAME",Pname);
         contentValues.put("FILENAME",Fname);
         db.insert("PRESCRIPTION",null,contentValues);
+    }
+
+    public void insertPatient(String Pname, String date,String time, SQLiteDatabase db)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("PATIENTNAME",Pname);
+        contentValues.put("PDATE",date);
+        contentValues.put("PTIME",time);
+        db.insert("PATIENT",null,contentValues);
+
     }
 
 
