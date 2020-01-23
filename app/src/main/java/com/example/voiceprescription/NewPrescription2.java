@@ -44,16 +44,18 @@ public class NewPrescription2 extends AppCompatActivity {
             Ssymptoms = str.nextToken();
             Sdiagnosis = str.nextToken();
             Log.d("NewPrescription2", "End StringTokenizer");
+
         }catch (Exception e)
         {
-            Toast.makeText(this, "Information not correct", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+            finish();
         }
         prescription = findViewById(R.id.prescription);
         remarks = findViewById(R.id.remarks);
         micPrescription = findViewById(R.id.prescriptmic);
         micRemarks = findViewById(R.id.remarksmic);
         nextbtn = findViewById(R.id.next);
-        backbtn = findViewById(R.id.back);
+        //backbtn = findViewById(R.id.back);
 
         //setting the onclick listeners for each button
 
@@ -84,14 +86,7 @@ public class NewPrescription2 extends AppCompatActivity {
             }
         });
 
-        backbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent intent2 = new Intent(NewPrescription2.this,NewPrescription.class);
-                startActivity(intent2);
-            }
-        });
 
 
     }

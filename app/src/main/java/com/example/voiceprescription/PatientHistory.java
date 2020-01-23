@@ -56,7 +56,7 @@ public class PatientHistory extends AppCompatActivity {
             String finalString = "";
             for(int i=0;i<NameList.size();i++){
                 String sno = String.valueOf((i+1));
-                finalString = finalString + sno +".  "+ NameList.get(i) + " visited you on "+DateList.get(i)+" at time "+TimeList.get(i)+"\n";
+                finalString = finalString + sno +".  "+ NameList.get(i) + " visited you on "+DateList.get(i)+" at time "+TimeList.get(i)+"\n\n";
             }
             textView.setText(finalString);
         }
