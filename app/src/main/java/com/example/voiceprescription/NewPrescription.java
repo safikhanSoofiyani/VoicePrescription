@@ -32,7 +32,7 @@ public class NewPrescription extends AppCompatActivity {
     Button nextbtn;
     Spinner sexList;
 
-    String Ssex , Sname, Ssymptom,Sdiagnosis,Sage;
+    String Ssex, Sname, Ssymptom,Sdiagnosis,Sage;
 
 
     @Override
@@ -81,7 +81,9 @@ public class NewPrescription extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
                 //For the time being
+                //Ssex="/:" ; Sname="/:"; Ssymptom="/:";Sdiagnosis="/:";Sage="/:";
                 Log.d(Tag,"Entered In nextbtnOnclick 1");
                 String toast;
                 Sname = name.getText().toString();
@@ -93,15 +95,21 @@ public class NewPrescription extends AppCompatActivity {
                 toast = Sname+":"+Sage+":"+Ssex+":"+Ssymptom+":"+Sdiagnosis;
                 //Log.d(Tag,"Entered In nextbtnOnclick 4");
                 //Toast.makeText(NewPrescription.this, ""+toast, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(NewPrescription.this,NewPrescription2.class);
-                //Log.d(Tag,"Entered In nextbtnOnclick 5");
-                intent.putExtra("tempdata",toast);
-                startActivity(intent);
+                //if(Sname.equals("/:") || Sage.equals("/:") || Ssymptom.equals("/:") || Sdiagnosis.equals("/:") || Ssex.equals("/:")) {
+                  //  Toast.makeText(NewPrescription.this, "Please enter all the fields", Toast.LENGTH_LONG).show();
+                //}
+                //else{
+
+                    Intent intent = new Intent(NewPrescription.this, NewPrescription2.class);
+                    //Log.d(Tag,"Entered In nextbtnOnclick 5");
+                    intent.putExtra("tempdata", toast);
+                    startActivity(intent);
+                }
                 //Log.d(Tag,"Entered In nextbtnOnclick 6");
 
 
 
-            }
+            //}
         });
 
         //playing with the spinner object
@@ -119,6 +127,7 @@ public class NewPrescription extends AppCompatActivity {
                     case 0:
                     {
                         Ssex = adapterView.getSelectedItem().toString();
+                        //Ssex = "male";
                         break;
                     }
 
@@ -145,7 +154,7 @@ public class NewPrescription extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                Toast.makeText(NewPrescription.this, "Please enter appropriate gender", Toast.LENGTH_LONG).show();
+                //Toast.makeText(NewPrescription.this, "Please enter appropriate gender", Toast.LENGTH_LONG).show();
 
             }
         });

@@ -2,6 +2,7 @@ package com.example.voiceprescription;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
+
+    /*This is just a message to indicate the recent commit*/
+
 
     Button btn;
     private static final String filename = "AboutMe.txt";
@@ -50,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+
+        MyHelper helper = new MyHelper(this);
+        File dir = new File(Environment.getExternalStorageDirectory()+"/Prescriptions");
 
 
 

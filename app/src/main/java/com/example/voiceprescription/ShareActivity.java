@@ -109,10 +109,18 @@ public class ShareActivity extends AppCompatActivity {
         filename = Sname + date+".pdf";
         checkpdfpermission();
 
+        String daten = new SimpleDateFormat("dd-MM-yyyy/HH:mm",
+                Locale.getDefault()).format(System.currentTimeMillis());
+        StringTokenizer stringTokenizer = new StringTokenizer(daten,"/");
+        String justDate = stringTokenizer.nextToken();
+        String justTime = stringTokenizer.nextToken();
+
         //inserting the pdf path in the database
         MyHelper helper = new MyHelper(this);
         SQLiteDatabase database = helper.getWritableDatabase();
         helper.insertPrescript(Sname,filename,database);
+
+        helper.insertPatient(Sname,justDate,justTime,database);
 
 
         //setting the button onClickListeners

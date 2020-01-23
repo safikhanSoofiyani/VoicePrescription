@@ -37,7 +37,7 @@ public class NewPrescription3 extends AppCompatActivity {
 
         //intializing the buttons
         document = findViewById(R.id.finaldocument);
-        backbtn = findViewById(R.id.back);
+        //backbtn = findViewById(R.id.back);
         confirmbtn = findViewById(R.id.confirm);
 
         BufferedReader input = null;
@@ -57,16 +57,22 @@ public class NewPrescription3 extends AppCompatActivity {
 
 
         //printing the document
-        Log.d("NewPrescription2","Starting StringTokenizer");
-        StringTokenizer str = new StringTokenizer(message,":");
-        Sname = str.nextToken();
-        Sage = str.nextToken();
-        Ssex = str.nextToken();
-        Ssymptoms = str.nextToken();
-        Sdiagnosis = str.nextToken();
-        Sprescription = str.nextToken();
-        Sremarks = str.nextToken();
-        Log.d("NewPrescription2","End StringTokenizer");
+        Log.d("NewPrescription3","Starting StringTokenizer");
+        try {
+            StringTokenizer str = new StringTokenizer(message, ":");
+            Sname = str.nextToken();
+            Sage = str.nextToken();
+            Ssex = str.nextToken();
+            Ssymptoms = str.nextToken();
+            Sdiagnosis = str.nextToken();
+            Sprescription = str.nextToken();
+            Sremarks = str.nextToken();
+            Log.d("NewPrescription3", "End StringTokenizer");
+        }catch (Exception e)
+        {
+            Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
 
         TextDisplayed = "<h2>"+Name+"</h2> <h2> </h2> <b>Prescription No. :</b> "+"<p>Prescription number</p>"+
@@ -83,10 +89,12 @@ public class NewPrescription3 extends AppCompatActivity {
         {
             //directory already exists
             //dont do anyhting
+            Log.d("NewPrescription3","directory exists");
         }
         else
         {
             //creating a new directory because the original directory is not present
+            Log.d("NewPrescription3","directory doesnt exists");
             try{
                 if(dir.mkdir()){
                     Log.d(TAG,"Directory created");
@@ -111,13 +119,7 @@ public class NewPrescription3 extends AppCompatActivity {
 
         //setting event handlers
 
-        backbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(NewPrescription3.this,NewPrescription2.class);
-                startActivity(intent);
-            }
-        });
+
 
         confirmbtn.setOnClickListener(new View.OnClickListener() {
             @Override
