@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class SmsSender extends AppCompatActivity {
 
     private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
@@ -87,7 +89,8 @@ public class SmsSender extends AppCompatActivity {
             phoneNumber = phonenumber.getText().toString();
             //message = text.getText().toString();
             SmsManager smsManager = SmsManager.getDefault();
-            smsManager.sendTextMessage(phoneNumber, null, Message, null, null);
+            ArrayList<String> parts = smsManager.divideMessage(Message);
+            smsManager.sendMultipartTextMessage(phoneNumber, null, parts, null, null);
             Toast.makeText(getApplicationContext(), "SMS sent.",
                     Toast.LENGTH_LONG).show();
         }catch (Exception e)

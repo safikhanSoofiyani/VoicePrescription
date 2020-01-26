@@ -41,7 +41,7 @@ public class ShareActivity extends AppCompatActivity {
     private static final int STORAGE_CODE = 1000;
     Button smsbtn,emailbtn,dontbtn;
     String Sname,Sage,Ssex,Ssymptoms,Sdiagnosis,Sprescription,Sremarks,Sprescriptno;
-    String SmsMessage,PdfMessage;
+    String SmsMessage1,SmsMessage2,PdfMessage;
     String FinalphoneNumber,FinalemailAddress;
     String filename;
     String Name;
@@ -87,8 +87,8 @@ public class ShareActivity extends AppCompatActivity {
         //making the message for sms
         /*SmsMessage = "Dr. Safi Khan"+"\n\n"+"Name:   "+Sname+"\nAge:  "+Sage+"\nSex:  "+Ssex+"\nSymptoms:  "+Ssymptoms
                 +"\n\nDiagnosis:  "+Sdiagnosis+"\n\nRemarks:  "+Sremarks+"\n\n\nDr. Safi Khan";*/
-        SmsMessage = Name+"\n\n"+"Name:   "+Sname+"\nAge:  "+Sage+"\nSex:  "+Ssex+"\nSymptoms:  "+Ssymptoms
-                +"\n\nDiagnosis:  "+Sdiagnosis+"\n\nRemarks:  "+Sremarks+"\n\n\n"+Name;
+        SmsMessage1 = Name+"\n\n"+"Name:   "+Sname+"\nAge:  "+Sage+"\nSex:  "+Ssex+"\nSymptoms:  "+Ssymptoms
+                +"\n\nDiagnosis:  "+Sdiagnosis+"\n\nPrescription:  "+Sprescription+"\n\nRemarks:  "+Sremarks+"\n\n\n"+Name;
 
         //making the message for pdf
         /*PdfMessage = "<h1>Dr. Safi Khan's</h1> <h2> </h2> <b>Prescription No. :</b> "+"<p>Prescription number</p>"+
@@ -133,7 +133,7 @@ public class ShareActivity extends AppCompatActivity {
                 //for taking phone number creating a dialog box
                 //Toast.makeText(ShareActivity.this, ""+ SmsMessage, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ShareActivity.this,SmsSender.class);
-                intent.putExtra("message",SmsMessage);
+                intent.putExtra("message",SmsMessage1);
                 startActivity(intent);
                 //sendSMS();
 
