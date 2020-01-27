@@ -120,7 +120,7 @@ public class ShareActivity extends AppCompatActivity {
         MyHelper helper = new MyHelper(this);
         SQLiteDatabase database = helper.getWritableDatabase();
         helper.insertPrescript(Sname,filename,database);
-
+        Log.d("ERROR!!!","calling insertpatient");
         helper.insertPatient(Sname,justDate,justTime,database);
 
 

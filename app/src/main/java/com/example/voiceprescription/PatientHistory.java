@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,9 @@ public class PatientHistory extends AppCompatActivity {
         MyHelper helper = new MyHelper(this);
         SQLiteDatabase database = helper.getReadableDatabase();
         try {
+            Log.d("ERROR!!!","calling cursor");
             Cursor cursor = database.rawQuery("SELECT PATIENTNAME,PDATE,PTIME FROM PATIENT", new String[]{});
+            Log.d("ERROR!!!","got cursor");
             if (cursor != null) {
                 cursor.moveToFirst();
                 do {

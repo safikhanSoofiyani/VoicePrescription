@@ -1,42 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PrescriptHistory"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@drawable/history"
+    android:id="@+id/relativeLayout6">
 
 
     <SearchView
         android:id="@+id/searchview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="51dp"
+        android:layout_width="301dp"
+        android:layout_height="35dp"
+        android:baselineAligned="false"
         android:iconifiedByDefault="false"
-        android:queryHint="Search Here" />
+        android:searchIcon="@drawable/search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.138"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="379dp" />
 
     <ListView
         android:id="@+id/listview"
-        android:layout_width="305dp"
-        android:layout_height="371dp"
-        android:layout_below="@+id/searchview"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-1dp">
+        android:layout_width="336dp"
+        android:layout_height="418dp"
+        android:cacheColorHint="#741F1F"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.616"
+        tools:layout_conversion_absoluteHeight="371dp"
+        tools:layout_conversion_absoluteWidth="305dp">
 
     </ListView>
 
     <Button
         android:id="@+id/fetch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="140dp"
-        android:layout_marginEnd="140dp"
-        android:layout_marginBottom="83dp"
-        android:text="Fetch" />
-</RelativeLayout>
+        android:layout_width="144dp"
+        android:layout_height="67dp"
+        android:background="#00FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.957"
+        tools:layout_conversion_absoluteHeight="48dp"
+        tools:layout_conversion_absoluteWidth="99dp" />
+</android.support.constraint.ConstraintLayout>

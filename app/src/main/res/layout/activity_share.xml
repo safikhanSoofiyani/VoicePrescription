@@ -1,63 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShareActivity">
+    tools:context=".ShareActivity"
+    android:background="@drawable/last">
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="123dp"
         android:text="Share By ?"
-        tools:layout_editor_absoluteX="202dp"
-        tools:layout_editor_absoluteY="112dp"
         android:textColor="@android:color/background_dark"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="112dp" />
 
     <Button
         android:id="@+id/sms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView11"
-        android:layout_alignParentStart="true"
+        android:layout_width="111dp"
+        android:layout_height="112dp"
         android:layout_marginStart="61dp"
         android:layout_marginTop="114dp"
-        android:text="SMS" />
+        android:background="#FFFFFF"
+        android:foreground="@drawable/sms"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <Button
         android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView11"
-        android:layout_alignParentEnd="true"
+        android:layout_width="111dp"
+        android:layout_height="112dp"
         android:layout_marginTop="114dp"
         android:layout_marginEnd="61dp"
-        android:text="Email" />
+        android:background="#FFFFFF"
+        android:foreground="@drawable/mail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <Button
         android:id="@+id/dontshare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sms"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
+        android:layout_width="111dp"
+        android:layout_height="112dp"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="91dp"
+        android:layout_marginTop="72dp"
         android:layout_marginEnd="140dp"
-        android:text="Done" />
+        android:background="#FFFFFF"
+        android:foreground="@drawable/done"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sms" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dontshare"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="149dp"
-        android:text="Clicking on Don't Share button will just create a pdf document." />
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
